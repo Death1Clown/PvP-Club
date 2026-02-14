@@ -78,7 +78,7 @@
 
     function copyIP() {
         navigator.clipboard.writeText(serverIP);
-        const box = document.getElementById('pvpclubnet.falix.pro');
+        const box = document.getElementById('display-ip');
         const originalText = box.innerText;
         box.innerText = "COPIED!";
         setTimeout(() => { box.innerText = originalText; }, 1500);
