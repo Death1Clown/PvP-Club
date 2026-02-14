@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PvP Club Network | Official Home</title>
+    <style>
+        :root {
+            --primary: #cf1111; 
+            --dark: #0a0a0a;
+            --accent: #ff4d4d;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle, rgba(207,17,17,0.15) 0%, rgba(10,10,10,1) 80%);
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px rgba(207, 17, 17, 0.6);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { text-shadow: 0 0 20px rgba(207, 17, 17, 0.4); }
+            50% { text-shadow: 0 0 40px rgba(207, 17, 17, 0.8); }
+            100% { text-shadow: 0 0 20px rgba(207, 17, 17, 0.4); }
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #bbb;
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        .btn-status {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-status:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(207,17,17,0.5);
+        }
+
+        /* Footer bar */
+        .info-bar {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 25px 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 0.85rem;
+            color: #777;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .info-item b { color: #fff; }
+
+        @media (max-width: 768px) {
+            .info-bar { flex-direction: column; align-items: center; gap: 10px; position: relative; }
+            .hero { height: auto; padding: 100px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>PvP CLUB</h1>
+        <p class="subtitle">Experience the ultimate arena. Dominate the leaderboards. Join the most competitive Crystal and KitPvP network.</p>
+        
+        <div class="btn-container">
+            <a href="/status" class="btn btn-status">View Server Status</a>
+        </div>
+    </section>
+
+    <footer class="info-bar">
+        <div class="info-item">IP: <b>pvpclubnet.falix.pro</b></div>
+        <div class="info-item">VERSION: <b>1.21</b></div>
+        <div class="info-item">MODES: <b>Crystal / Sword / KitPvP</b></div>
+        <div class="info-item">&copy; <span id="year"></span> PvP Club Network</div>
+    </footer>
+</body>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</html>
