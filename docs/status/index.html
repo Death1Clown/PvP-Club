@@ -39,7 +39,7 @@
 
         /* Hero / Header Section */
         .status-hero {
-            min-height: 45vh;
+            min-height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -132,20 +132,27 @@
             color: #fff;
         }
 
-        /* Metrics Dashboard Grid */
-        .dashboard {
-            max-width: 1100px;
-            margin: 50px auto;
+        /* Two-Column Grid Hub Layout */
+        .hub-container {
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
 
-        @media (max-width: 768px) {
-            .dashboard {
+        @media (max-width: 992px) {
+            .hub-container {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* Left Hand Side Dashboard Metrics Stack */
+        .metrics-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
 
         .status-card {
@@ -194,7 +201,6 @@
             color: var(--offline);
         }
 
-        /* Performance Metrics Layout */
         .metric-row {
             display: flex;
             justify-content: space-between;
@@ -217,6 +223,39 @@
             text-align: right;
         }
 
+        /* Right Hand Side Discord News Feed Widget */
+        .news-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            height: 100%;
+            min-height: 480px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .widget-wrapper {
+            flex-grow: 1;
+            width: 100%;
+            background: #090909;
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        iframe.discord-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* Footer bar */
         .info-bar {
             width: 100%;
@@ -225,7 +264,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 40px auto 0 auto;
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -269,47 +308,64 @@
         </div>
     </section>
 
-    <main class="dashboard">
+    <div class="hub-container">
         
-        <div class="status-card">
-            <div>
+        <div class="metrics-column">
+            
+            <div class="status-card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Minecraft Proxy</span>
+                        <span class="badge-status" id="serverBadge">Checking</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Host Domain</span>
+                        <span class="metric-value">pvpclubnet.falix.pro</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Players Connected</span>
+                        <span class="metric-value" id="playerCount">-- / --</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Server Version</span>
+                        <span class="metric-value" id="serverVersion">1.21</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-card">
+                <div>
+                    <div class="card-header">
+                        <span class="card-title">Live Message / MOTD</span>
+                        <span class="badge-status online" id="perfBadge">Stable</span>
+                    </div>
+                    <div class="metric-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
+                        <span class="metric-label">Server MOTD:</span>
+                        <span class="metric-value" id="serverMotd" style="text-align: left; font-size: 0.85rem; color: #bbb;">Loading configuration description...</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Hardware Node</span>
+                        <span class="metric-value">Falix.pro</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="news-column">
+            <div class="news-card">
                 <div class="card-header">
-                    <span class="card-title">Minecraft Proxy</span>
-                    <span class="badge-status" id="serverBadge">Checking</span>
+                    <span class="card-title">Network News & Announcements</span>
+                    <span class="badge-status online" style="background: rgba(88, 101, 242, 0.15); color: #5865F2;">Discord Feed</span>
                 </div>
-                <div class="metric-row">
-                    <span class="metric-label">Host Domain</span>
-                    <span class="metric-value">pvpclubnet.falix.pro</span>
-                </div>
-                <div class="metric-row">
-                    <span class="metric-label">Players Connected</span>
-                    <span class="metric-value" id="playerCount">-- / --</span>
-                </div>
-                <div class="metric-row">
-                    <span class="metric-label">Server Version</span>
-                    <span class="metric-value" id="serverVersion">1.21</span>
+                
+                <div class="widget-wrapper">
+                    <iframe class="discord-iframe" src="https://e.widgetbot.io/channels/1468363686988091537/1506678909851271399?api=true" allow="clipboard-write"></iframe>
                 </div>
             </div>
         </div>
 
-        <div class="status-card">
-            <div>
-                <div class="card-header">
-                    <span class="card-title">Live Message / MOTD</span>
-                    <span class="badge-status online" id="perfBadge">Stable</span>
-                </div>
-                <div class="metric-row" style="flex-direction: column; align-items: flex-start; gap: 4px;">
-                    <span class="metric-label">Server MOTD:</span>
-                    <span class="metric-value" id="serverMotd" style="text-align: left; font-size: 0.85rem; color: #bbb;">Loading configuration description...</span>
-                </div>
-                <div class="metric-row">
-                    <span class="metric-label">Hardware Node</span>
-                    <span class="metric-value">Falix.pro</span>
-                </div>
-            </div>
-        </div>
-
-    </main>
+    </div>
 
     <footer class="info-bar">
         <div>
@@ -322,10 +378,8 @@
     </footer>
 
     <script>
-        // Set dynamic layout footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Target server IP address config
         const serverIP = "pvpclubnet.falix.pro";
 
         async function fetchServerStats() {
@@ -337,19 +391,16 @@
             const serverMotd = document.getElementById('serverMotd');
 
             try {
-                // Fetch stats via public fallback/cache API architecture 
                 const response = await fetch(`https://api.mcsrvstat.us/3/${serverIP}`);
                 const data = await response.json();
 
                 if (data.online) {
-                    // Update main status banners to system green
                     banner.className = "global-status online";
                     bannerText.innerText = "All Systems Operational";
                     
                     serverBadge.className = "badge-status online";
                     serverBadge.innerText = "Online";
 
-                    // Map real-time variables safely
                     const currentPlayers = data.players.online ?? 0;
                     const maxPlayers = data.players.max ?? 0;
                     playerCount.innerText = `${currentPlayers} / ${maxPlayers}`;
@@ -358,7 +409,6 @@
                         serverVersion.innerText = data.version;
                     }
 
-                    // Standard Clean text-parse for MOTD arrays
                     if (data.motd && data.motd.clean && data.motd.clean.length > 0) {
                         serverMotd.innerText = data.motd.clean.join('\n');
                     } else {
@@ -366,7 +416,6 @@
                     }
 
                 } else {
-                    // Update components to reflect offline state
                     banner.className = "global-status offline";
                     bannerText.innerText = "Server Unreachable / Offline";
                     
@@ -384,11 +433,14 @@
             }
         }
 
-        // Run API capture on loading screen sequence initialization
         fetchServerStats();
-        
-        // Auto refresh telemetry arrays every 60 seconds
         setInterval(fetchServerStats, 10000);
     </script>
+    <script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+    new Crate({
+        server: '1468363686988091537', // PvP Club Network
+        channel: '1468634931227005091' // #📰│news
+    })
+</script>
 </body>
 </html>
